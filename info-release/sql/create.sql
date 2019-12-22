@@ -56,6 +56,7 @@ CREATE TABLE `t_shop` (
   `desc` varchar(128) DEFAULT NULL COMMENT '描述',
   `cover_img` varchar(512) DEFAULT NULL COMMENT '封面',
   `content` text COMMENT '详细信息',
+  `category` varchar(32) DEFAULT NULL COMMENT '所属分类',
   `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除',
   `is_top` tinyint(1) DEFAULT '0' COMMENT '是否置顶',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -65,6 +66,7 @@ CREATE TABLE `t_shop` (
 CREATE TABLE `t_shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) DEFAULT NULL COMMENT '店铺分类名称',
+  `cover_icon` varchar(255) DEFAULT NULL COMMENT '分类图标',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhuxn.inforelease.orm.mapper.ShopCategoryMapper">
+
+    <select id="selectCategorys" resultType="string">
+        SELECT name,cover_icon
+        FROM t_shop_category
+    </select>
+</mapper>
