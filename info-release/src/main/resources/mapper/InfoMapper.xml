@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhuxn.inforelease.orm.mapper.InfoMapper">
+    <resultMap id="InfoResultMap" type="Info">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="category" property="category" />
+        <result column="info_type" property="infoType" />
+        <result column="content" property="content" />
+        <result column="ip_address" property="ipAddress" />
+        <result column="delete_password" property="deletePassword" />
+        <result column="is_pass" property="isPass" />
+        <result column="is_top" property="isTop" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <insert id="insertInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_info(category,info_type,content,ip_address,delete_password)
+        VALUES (#{category},#{infoType},#{content},#{ipAddress},#{deletePassword})
+    </insert>
+
+    <update id="deleteInfo">
+        UPDATE t_info
+        SET is_deleted = TRUE
+        WHERE id = #{infoId}
+        AND delete_password = #{deletePassword}
+    </update>
+
+    <update id="deleteInfoByUser">
+        UPDATE t_info
+        SET is_deleted = TRUE
+        WHERE id = #{infoId}
+    </update>
+
+    <select id="selectPageList" resultMap="InfoResultMap">
+        SELECT id,category,info_type,content,create_time,is_top
+        FROM t_info
+        WHERE is_deleted = FALSE
+        AND is_pass = TRUE
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        <if test="infoType != null and infoType != ''">
+            AND info_type = #{infoType}
+        </if>
+        ORDER BY create_time DESC, is_top DESC
+        LIMIT #{start},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="int">
+        SELECT count(1)
+        FROM t_info
+        WHERE is_deleted = FALSE
+        AND is_pass = TRUE
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        <if test="infoType != null and infoType != ''">
+            AND info_type = #{infoType}
+        </if>
+    </select>
+
+    <select id="selectPageListForUser" resultMap="InfoResultMap">
+        SELECT id,category,info_type,content,create_time,is_top,is_pass
+        FROM t_info
+        WHERE is_deleted = FALSE
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        <if test="infoType != null and infoType != ''">
+            AND info_type = #{infoType}
+        </if>
+        ORDER BY create_time DESC, is_pass ASC
+        LIMIT #{start},#{pageSize}
+    </select>
+
+    <select id="selectCountForUser" resultType="int">
+        SELECT count(1)
+        FROM t_info
+        WHERE is_deleted = FALSE
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        <if test="infoType != null and infoType != ''">
+            AND info_type = #{infoType}
+        </if>
+    </select>
+
+    <select id="selectById" resultMap="InfoResultMap">
+        SELECT id,category,info_type,content,ip_address,create_time,is_top
+        FROM t_info
+        WHERE id = #{id}
+        AND is_deleted = FALSE
+    </select>
+
+    <update id="updateTopStatus">
+        UPDATE t_info
+        SET is_top = #{status}
+        WHERE id = #{infoId}
+    </update>
+
+    <update id="updatePassStatus">
+        UPDATE t_info
+        SET is_pass = #{status}
+        WHERE id = #{infoId}
+    </update>
+</mapper>

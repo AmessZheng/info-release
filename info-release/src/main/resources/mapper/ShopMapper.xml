@@ -36,11 +36,11 @@
     <update id="deleteShop">
         UPDATE t_shop
         SET is_deleted = TRUE
-        WHERE id = #{id}
+        WHERE id = #{shopId}
     </update>
 
     <select id="selectPageList" resultMap="ShopResultMap">
-        SELECT name,telephone,address,desc,cover_img,category
+        SELECT id,name,telephone,address,desc,cover_img,category
         FROM t_shop
         WHERE is_deleted = FALSE
         <if test="category != null and category != ''">
@@ -60,15 +60,15 @@
     </select>
 
     <select id="selectById" resultMap="ShopResultMap">
-        SELECT name,telephone,address,desc,cover_img,content,category
+        SELECT id,name,telephone,address,desc,cover_img,content,category
         FROM t_shop
-        WHERE id = #{id}
+        WHERE id = #{shopId}
         AND is_deleted = FALSE
     </select>
 
     <update id="updateTopStatus">
         UPDATE t_shop
         SET is_top = #{status}
-        WHERE id = #{id}
+        WHERE id = #{shopId}
     </update>
 </mapper>

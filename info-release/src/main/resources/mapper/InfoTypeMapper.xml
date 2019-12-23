@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhuxn.inforelease.orm.mapper.InfoTypeMapper">
+
+    <select id="selectInfoTypes" resultType="string">
+        SELECT name
+        FROM t_info_type
+        WHERE category = #{category}
+        AND is_deleted = FALSE
+    </select>
+</mapper>
