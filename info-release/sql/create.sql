@@ -5,6 +5,7 @@ CREATE TABLE `t_info` (
   `content` varchar(256) DEFAULT NULL COMMENT '信息内容',
   `ip_address` varchar(64) DEFAULT NULL COMMENT '发布ip',
   `delete_password` varchar(128) DEFAULT NULL COMMENT '删除密码',
+  `is_pass` tinyint(1) DEFAULT '0' COMMENT '是否审核通过',
   `is_top` tinyint(1) DEFAULT '0' COMMENT '是否置顶',
   `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '发布时间',
@@ -14,15 +15,17 @@ CREATE TABLE `t_info` (
 CREATE TABLE `t_info_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) DEFAULT NULL COMMENT '分类名称',
+  `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `t_info_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `info_category` varchar(32) DEFAULT NULL COMMENT '所属消息分类',
   `type_name` varchar(32) DEFAULT NULL COMMENT '消息类型',
+  `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `t_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -39,7 +42,7 @@ CREATE TABLE `t_role` (
   `code` varchar(45) DEFAULT NULL COMMENT '角色代码',
   `name` varchar(45) DEFAULT NULL COMMENT '角色名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 CREATE TABLE `t_role_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,8 +70,9 @@ CREATE TABLE `t_shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) DEFAULT NULL COMMENT '店铺分类名称',
   `cover_icon` varchar(255) DEFAULT NULL COMMENT '分类图标',
+  `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `t_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -79,11 +83,22 @@ CREATE TABLE `t_user` (
   `disabled` tinyint(1) DEFAULT '0' COMMENT '是否停用 0未停用 1已停用',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name_UNIQUE` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `t_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT '0' COMMENT '用户id',
   `role_id` int(11) DEFAULT '0' COMMENT '角色id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户角色关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色关联表';
+
+CREATE TABLE `t_ad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ad_type` varchar(32) DEFAULT NULL COMMENT '广告类型',
+  `content` varchar(256) DEFAULT NULL COMMENT '文字广告内容',
+  `img_url` varchar(512) DEFAULT NULL COMMENT '图片广告地址',
+  `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除',
+  `ad_level` int(11) DEFAULT NULL COMMENT '重要级别 数字越高 越重要 越容易被看到',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
