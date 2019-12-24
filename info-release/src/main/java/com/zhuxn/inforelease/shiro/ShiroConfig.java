@@ -51,7 +51,9 @@ public class ShiroConfig {
 	        filterChainDefinitionMap.put("/shiro/logout", "anon");  
 	        // 配置不会被拦截的链接 顺序判断
 	        filterChainDefinitionMap.put("/login/**", "anon");
-			filterChainDefinitionMap.put("/visitor/**", "anon");
+			filterChainDefinitionMap.put("/shop/**", "anon");
+			filterChainDefinitionMap.put("/info/**", "anon");
+			filterChainDefinitionMap.put("/ad/**", "anon");
 
 			//业务拦截器
 			filterChainDefinitionMap.put("/user/**", "roles[user]");

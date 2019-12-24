@@ -62,6 +62,15 @@ public interface AdMapper {
     int selectCount(@Param(value = "adType") String adType);
 
     /**
+     * 根据id查询广告详情
+     * @author zhuxn
+     * @date 2019/12/24 15:43
+     * @param id
+     * @return
+     */
+    Ad selectById(@Param(value = "id") int id);
+
+    /**
      * 分类查询广告信息
      * @author zhuxn
      * @date 2019/12/23 16:56

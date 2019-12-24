@@ -113,6 +113,19 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
+    public AjaxResult getAdById(int id) {
+        try {
+            Ad ad = adMapper.selectById(id);
+            if (null != ad) {
+                return AjaxResult.newSuccess().withData(ad);
+            }
+        } catch (Exception e) {
+            LOG.error("AdServiceImpl getAdById error. id = " + id, e);
+        }
+        return AjaxResult.newError();
+    }
+
+    @Override
     public AjaxResult getAdForView(String adType) {
         try {
             List<Ad> ads = adMapper.selectForView(adType);

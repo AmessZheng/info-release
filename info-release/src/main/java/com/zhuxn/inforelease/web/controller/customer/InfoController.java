@@ -61,6 +61,18 @@ public class InfoController {
     }
 
     /**
+     * 根据id查询信息详情
+     * @author zhuxn
+     * @date 2019/12/24 14:32
+     * @param infoId
+     * @return
+     */
+    @RequestMapping("getInfoById")
+    public AjaxResult getInfoById(int infoId) {
+        return infoService.getInfoById(infoId);
+    }
+
+    /**
      * 查询信息分类列表
      * @author zhuxn
      * @date 2019/12/23 11:44

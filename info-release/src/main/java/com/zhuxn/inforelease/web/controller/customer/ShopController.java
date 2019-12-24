@@ -41,4 +41,16 @@ public class ShopController {
     public AjaxResult getShopCategorys() {
         return shopService.getShopCategorys();
     }
+
+    /**
+     * 根据shopId查询店铺信息
+     * @author zhuxn
+     * @date 2019/12/24 10:44
+     * @param shopId
+     * @return
+     */
+    @RequestMapping("getById")
+    public AjaxResult getById(int shopId) {
+        return shopService.getShopById(shopId);
+    }
 }

@@ -68,4 +68,16 @@ public class UserAdController {
     public AjaxResult deleteAd (int id){
         return adService.deleteAd(id);
     }
+
+    /**
+     * 根据id查询广告详情
+     * @author zhuxn
+     * @date 2019/12/24 15:47
+     * @param id
+     * @return
+     */
+    @RequestMapping("getById")
+    public AjaxResult getById (int id){
+        return adService.getAdById(id);
+    }
 }

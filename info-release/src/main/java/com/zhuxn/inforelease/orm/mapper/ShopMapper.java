@@ -50,7 +50,7 @@ public interface ShopMapper {
      * @param category
      * @return
      */
-    int selectCount(String category);
+    int selectCount(@Param(value = "category") String category);
 
     /**
      * 根据shopId查询店铺详细信息

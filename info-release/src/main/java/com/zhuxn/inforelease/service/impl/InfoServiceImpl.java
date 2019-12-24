@@ -72,9 +72,15 @@ public class InfoServiceImpl implements InfoService{
             if (StringUtils.isBlank(deletePassword)) {
                 return AjaxResult.newError().withMsg("请输入删除密码");
             }
+            Info info = infoMapper.selectById(infoId);
+            if (null == info) {
+                return AjaxResult.newError().withMsg("信息不存在");
+            }
             int row = infoMapper.deleteInfo(infoId, DigestUtils.md5DigestAsHex(deletePassword.getBytes()));
             if (row > 0) {
                 return AjaxResult.newSuccess();
+            } else {
+                return AjaxResult.newError().withMsg("删除密码不正确，请重新输入");
             }
         } catch (Exception e) {
             LOG.error("InfoServiceImpl deleteInfo error. infoId = " + infoId + ",deletePassword = " + deletePassword, e);

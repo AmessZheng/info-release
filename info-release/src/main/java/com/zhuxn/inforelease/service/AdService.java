@@ -46,6 +46,15 @@ public interface AdService {
 	AjaxResult getAdPageList(String adType, int pageNo);
 
 	/**
+	 * 根据广告id查询广告内容
+	 * @author zhuxn
+	 * @date 2019/12/24 15:41
+	 * @param id
+	 * @return
+	 */
+	AjaxResult getAdById(int id);
+
+	/**
 	 * 分类查询广告信息
 	 * @author zhuxn
 	 * @date 2019/12/23 17:04

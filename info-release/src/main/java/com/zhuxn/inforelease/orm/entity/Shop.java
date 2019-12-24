@@ -27,7 +27,7 @@ public class Shop extends BaseEntity{
     /**
      * 描述
      */
-    private String desc;
+    private String shopDesc;
     /**
      * 封面
      */
@@ -78,12 +78,12 @@ public class Shop extends BaseEntity{
         this.address = address;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getShopDesc() {
+        return shopDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setShopDesc(String shopDesc) {
+        this.shopDesc = shopDesc;
     }
 
     public String getCoverImg() {
@@ -142,7 +142,7 @@ public class Shop extends BaseEntity{
         sb.append("name='").append(name).append('\'');
         sb.append(", telephone='").append(telephone).append('\'');
         sb.append(", address='").append(address).append('\'');
-        sb.append(", desc='").append(desc).append('\'');
+        sb.append(", shopDesc='").append(shopDesc).append('\'');
         sb.append(", coverImg='").append(coverImg).append('\'');
         sb.append(", content='").append(content).append('\'');
         sb.append(", category='").append(category).append('\'');

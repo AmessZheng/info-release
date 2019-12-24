@@ -90,7 +90,7 @@
     <select id="selectById" resultMap="InfoResultMap">
         SELECT id,category,info_type,content,ip_address,create_time,is_top
         FROM t_info
-        WHERE id = #{id}
+        WHERE id = #{infoId}
         AND is_deleted = FALSE
     </select>
 

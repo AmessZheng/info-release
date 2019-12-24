@@ -56,7 +56,7 @@ CREATE TABLE `t_shop` (
   `name` varchar(64) DEFAULT NULL COMMENT '店铺名称',
   `telephone` varchar(32) DEFAULT NULL COMMENT '联系电话',
   `address` varchar(128) DEFAULT NULL COMMENT '地址',
-  `desc` varchar(128) DEFAULT NULL COMMENT '描述',
+  `shop_desc` varchar(128) DEFAULT NULL COMMENT '描述',
   `cover_img` varchar(512) DEFAULT NULL COMMENT '封面',
   `content` text COMMENT '详细信息',
   `category` varchar(32) DEFAULT NULL COMMENT '所属分类',

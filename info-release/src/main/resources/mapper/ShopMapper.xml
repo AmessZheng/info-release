@@ -8,7 +8,7 @@
         <result column="name" property="name" />
         <result column="telephone" property="telephone" />
         <result column="address" property="address" />
-        <result column="desc" property="desc" />
+        <result column="shop_desc" property="shopDesc" />
         <result column="cover_img" property="coverImg" />
         <result column="content" property="content" />
         <result column="category" property="category" />
@@ -17,19 +17,19 @@
     </resultMap>
 
     <insert id="insertShop" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_shop(name,telephone,address,desc,cover_img,content,category)
-        VALUES (#{name},#{telephone},#{address},#{desc},#{coverImg},#{content},#{category})
+        INSERT INTO t_shop(name,telephone,address,shop_desc,cover_img,content,category)
+        VALUES (#{name},#{telephone},#{address},#{shopDesc},#{coverImg},#{content},#{category})
     </insert>
 
     <update id="updateShop">
         UPDATE t_shop
-        SET name = #{name}
-            ,telephone = #{telephone}
-            ,address = #{address}
-            ,desc = #{desc}
-            ,cover_img = #{coverImg}
-            ,content = #{content}
-            ,category = #{category}
+        SET name = #{name},
+            telephone = #{telephone},
+            address = #{address},
+            shop_desc = #{shopDesc},
+            cover_img = #{coverImg},
+            content = #{content},
+            category = #{category}
         WHERE id = #{id}
     </update>
 
@@ -40,7 +40,7 @@
     </update>
 
     <select id="selectPageList" resultMap="ShopResultMap">
-        SELECT id,name,telephone,address,desc,cover_img,category
+        SELECT id,name,telephone,address,shop_desc,cover_img,category,is_top
         FROM t_shop
         WHERE is_deleted = FALSE
         <if test="category != null and category != ''">
@@ -60,7 +60,7 @@
     </select>
 
     <select id="selectById" resultMap="ShopResultMap">
-        SELECT id,name,telephone,address,desc,cover_img,content,category
+        SELECT id,name,telephone,address,shop_desc,cover_img,content,category,is_top
         FROM t_shop
         WHERE id = #{shopId}
         AND is_deleted = FALSE

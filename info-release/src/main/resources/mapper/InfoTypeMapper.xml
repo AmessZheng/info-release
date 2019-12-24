@@ -4,9 +4,9 @@
 <mapper namespace="com.zhuxn.inforelease.orm.mapper.InfoTypeMapper">
 
     <select id="selectInfoTypes" resultType="string">
-        SELECT name
+        SELECT type_name AS typeName
         FROM t_info_type
-        WHERE category = #{category}
+        WHERE info_category = #{category}
         AND is_deleted = FALSE
     </select>
 </mapper>

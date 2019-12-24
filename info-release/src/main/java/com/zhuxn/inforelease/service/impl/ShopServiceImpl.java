@@ -41,7 +41,7 @@ public class ShopServiceImpl implements ShopService {
             if (StringUtils.isBlank(shop.getAddress())) {
                 return AjaxResult.newError().withMsg("地址不能为空");
             }
-            if (StringUtils.isBlank(shop.getDesc())) {
+            if (StringUtils.isBlank(shop.getShopDesc())) {
                 return AjaxResult.newError().withMsg("描述不能为空");
             }
             if (StringUtils.isBlank(shop.getCoverImg())) {
@@ -78,7 +78,7 @@ public class ShopServiceImpl implements ShopService {
             if (StringUtils.isBlank(shop.getAddress())) {
                 return AjaxResult.newError().withMsg("地址不能为空");
             }
-            if (StringUtils.isBlank(shop.getDesc())) {
+            if (StringUtils.isBlank(shop.getShopDesc())) {
                 return AjaxResult.newError().withMsg("描述不能为空");
             }
             if (StringUtils.isBlank(shop.getCoverImg())) {
